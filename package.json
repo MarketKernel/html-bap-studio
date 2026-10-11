@@ -1,0 +1,26 @@
+{
+  "name": "bap-studio",
+  "version": "0.1.0",
+  "private": true,
+  "description": "BAP Studio — a business application builder in one standalone HTML file, extensible with plugins",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "node build.mjs",
+    "watch": "node build.mjs --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "node tests/run.mjs",
+    "test:browser": "node tests/app.mjs && node tests/app-finance.mjs",
+    "dev-server": "node tools/dev-server.mjs",
+    "shots": "node tools/shots.mjs",
+    "i18n": "node tools/i18n.mjs",
+    "check": "npm run typecheck && npm test && npm run build && npm run test:browser"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.12",
+    "typescript": "^5.9.3"
+  }
+}

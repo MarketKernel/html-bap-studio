@@ -1,0 +1,33 @@
+/* The ER diagram: nodes, arrows, the link handles and the legend. */
+
+.diagram-page .er { touch-action: none; user-select: none; overflow: clip; }
+.er.panning { cursor: grabbing; }
+.er .node { cursor: move; }
+.er .node.dragging rect.box { stroke: var(--accent); stroke-width: 1.5; }
+.er .node.dragging { filter: drop-shadow(0 6px 14px rgb(16 24 40 / 18%)); }
+.er .node.drop rect.box { stroke: var(--accent); stroke-width: 2.5; }
+.er .node rect.box { filter: drop-shadow(0 1px 2px rgb(16 24 40 / 8%)); }
+.er .node text.kind { fill: #fff; opacity: 0.75; font-size: 10px; font-family: var(--mono); }
+.er .node text.fname { font-family: var(--mono); font-size: 11px; }
+.er .node text.fname.req { font-weight: 600; }
+.er .node text.type { font-size: 10.5px; }
+.er .node text.type.ref { fill: var(--accent); }
+.er .node text.part { fill: var(--text-2); font-weight: 600; font-size: 11px; }
+.er .node line.sep { stroke: var(--border); }
+.er .node rect.row-hit { fill: transparent; }
+.er .node rect.row-hit:hover { fill: var(--row-hover); }
+.er .node .handle { fill: var(--surface); stroke: var(--accent); stroke-width: 1.5; opacity: 0; cursor: crosshair; transition: opacity 0.1s; }
+.er .node:hover .handle { opacity: 1; }
+.er .node .handle:hover { fill: var(--accent); }
+.er .arrow { fill: var(--text-3); }
+.er .arrow.posting { fill: var(--ok); }
+.er .edge.hl { stroke: var(--accent); stroke-width: 2; }
+.er .edge.posting.hl { stroke: var(--ok); stroke-width: 2.2; }
+.er .edge.link-temp { stroke: var(--accent); stroke-width: 1.8; stroke-dasharray: 4 3; pointer-events: none; }
+.er-legend { position: absolute; inset-inline-start: 10px; bottom: 10px; display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: center; padding: 5px 10px; font-size: 11px; color: var(--text-2); background: color-mix(in srgb, var(--surface) 90%, transparent); border: 1px solid var(--border); border-radius: 8px; pointer-events: none; max-width: calc(100% - 20px); }
+.er-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.er-legend .ln { display: inline-block; width: 22px; height: 0; border-top: 1.5px solid var(--text-3); }
+.er-legend .ln.part { border-top-style: dashed; }
+.er-legend .ln.posting { border-top: 2px dotted var(--ok); }
+/* Header colours are fixed per kind (white titles on them); the accent turns light in the dark theme. */
+.er .node.catalog rect.head { fill: #2f5bd3; }

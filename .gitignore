@@ -1,0 +1,25 @@
+# OS / editors
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Dependencies and generated output
+node_modules/
+build/
+shots/
+*.tsbuildinfo
+*.tmp
+
+# Logs and local environment
+*.log
+npm-debug.log*
+.env
+.env.*
+
+# Local-only notes and task material
+private/
+/CLAUDE.md
+/Task.md
+/Task_next.md
+/task/

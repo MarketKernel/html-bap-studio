@@ -1,0 +1,71 @@
+/* The form designer (designer/form.ts): element tree, canvas, properties. */
+
+.fd-outline { width: 210px; flex: none; border-inline-end: 1px solid var(--border); background: var(--surface-2); overflow: auto; padding-bottom: 12px; }
+.fd-pane-title { padding: 10px 12px 6px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-3); font-weight: 600; }
+.fd-outline .tree-item .icon { flex: none; color: var(--text-3); }
+.fd-outline .tree-item.selected .icon { color: inherit; }
+.fd-outline .tree-item .badge { overflow: hidden; text-overflow: ellipsis; max-width: 80px; }
+
+.fd-table-of { display: inline-flex; align-items: center; gap: 4px; margin-inline-start: 10px; }
+
+/* The canvas: the form as a record shows it, every element in a selectable frame. */
+.fd-canvas { padding: 18px 16px 40px; }
+.fd-canvas .canvas-form { padding: 16px 18px 18px; }
+.fd-caption { display: flex; align-items: center; gap: 10px; padding: 0 2px 12px; margin-bottom: 12px; border-bottom: 1px solid var(--border); }
+.fd-caption h2 { font-size: 17px; margin: 0; font-weight: 600; }
+
+.fd-canvas .d-node { cursor: default; padding: 2px; margin: -2px; transition: border-color 0.1s, background-color 0.1s; }
+.fd-canvas .d-node.d-root { border: 0; padding: 0; margin: 0; min-height: 60px; background: none; }
+.fd-canvas .d-node.d-root.drop-into { outline-offset: 4px; }
+/* Only the innermost frame under the pointer is outlined (form.ts sets .fd-hover). */
+.fd-canvas .d-node:hover:not(.selected) { border-color: transparent; }
+.fd-canvas .d-node.fd-hover:not(.selected) { border-color: var(--border-strong); }
+.fd-canvas .d-node.fd-hover:not(.d-root) > .d-label { display: block; background: var(--surface-3); color: var(--text-2); }
+.fd-canvas .d-node.selected > .d-label { display: block; background: var(--accent); color: var(--accent-text); }
+.fd-canvas .d-node[draggable='true'] { cursor: grab; }
+.fd-canvas .d-node.fd-dragging { opacity: 0.45; }
+.fd-canvas .d-node.drop-into { background: color-mix(in srgb, var(--accent-soft) 60%, transparent); }
+/* Frames inside a grid of columns stretch like the cells they replace. */
+.fd-canvas .f-columns > .d-node { min-width: 0; }
+.fd-canvas .d-node > .f-group, .fd-canvas .d-node > .f-part, .fd-canvas .d-node > .f-tabs { margin-bottom: 8px; }
+.fd-canvas .d-node > .f-field { margin-bottom: 3px; }
+.fd-canvas .d-node.fd-group:not(.d-root) { margin-bottom: 4px; }
+.fd-canvas .f-plain-group { min-height: 20px; }
+/* The canvas is narrower than a card: let editors shrink rather than overflow the sheet. */
+.fd-canvas .f-field { grid-template-columns: minmax(90px, 34%) minmax(0, 1fr); }
+.fd-canvas .f-field.top { grid-template-columns: minmax(0, 1fr); }
+.fd-canvas .f-field .input { min-width: 0; max-width: 100%; }
+
+/* Editors on the canvas only show; clicks go to the frame. Tab headers stay clickable. */
+.fd-canvas .canvas-form input,
+.fd-canvas .canvas-form select,
+.fd-canvas .canvas-form textarea,
+.fd-canvas .canvas-form .btn,
+.fd-canvas .canvas-form .f-link { pointer-events: none; }
+.fd-canvas .canvas-form .input[readonly], .fd-canvas .canvas-form .input:disabled { background: var(--surface); color: var(--text-3); }
+.fd-canvas .canvas-form .lookup .btn { opacity: 0.6; }
+.fd-canvas .f-tabs .subtab { cursor: pointer; }
+
+.fd-placeholder { padding: 10px 12px; gap: 6px; background: repeating-linear-gradient(-45deg, var(--surface), var(--surface) 8px, var(--surface-2) 8px, var(--surface-2) 16px); min-height: 70px; }
+.fd-placeholder-head { display: flex; align-items: center; gap: 6px; color: var(--text-2); }
+.fd-placeholder-cols { display: flex; flex-wrap: wrap; gap: 4px; }
+.fd-placeholder-cols > span { font-size: 11px; padding: 1px 8px; border: 1px solid var(--border); border-radius: 4px; background: var(--surface); color: var(--text-2); }
+
+.fd-empty { border: 1px dashed var(--border-strong); border-radius: 6px; padding: 12px; text-align: center; color: var(--text-3); font-size: 12px; margin: 2px 0 6px; }
+
+/* Properties panel. */
+.fd-node-tools { display: flex; align-items: center; gap: 2px; padding: 0 8px 6px 12px; }
+.fd-node-tools .spacer { flex: 1; }
+.fd-node-type { display: inline-flex; align-items: center; gap: 6px; color: var(--text-2); font-size: 12px; }
+.fd-wide { margin: 4px 12px; }
+.fd-tip { margin: 6px 12px 4px; font-size: 12px; line-height: 1.45; }
+.fd-chip { display: inline-flex; align-items: center; gap: 4px; padding-inline-end: 2px !important; }
+.fd-chip .icon { color: var(--text-3); }
+.fd-chip.fd-dragging { opacity: 0.45; }
+.fd-chip-add { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border: 0; border-radius: 50%; background: none; color: var(--text-2); cursor: pointer; padding: 0; }
+.fd-chip-add:hover { background: var(--accent); color: var(--accent-text); }
+.form-designer .palette-items .btn[draggable='true'] { cursor: grab; }
+
+@media (max-width: 900px) {
+  .fd-outline { display: none; }
+}

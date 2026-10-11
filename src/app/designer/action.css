@@ -1,0 +1,37 @@
+/* The action and trigger designer: the step list and the step panels. */
+
+.action-main { flex: 1; overflow: auto; padding: 10px 12px; }
+.action-buttons { align-items: center; }
+.action-buttons .spacer { flex: 1; }
+.action-main .steps { padding: 0; outline: none; max-width: 980px; }
+.action-empty { padding: 18px 4px; }
+.step { min-height: 34px; }
+.step:hover { border-color: var(--border-strong); }
+.step .step-icon { display: inline-flex; color: var(--accent); flex: none; }
+.step[data-type='if'] .step-icon, .step[data-type='stop'] .step-icon { color: var(--warn); }
+.step[data-type='delete'] .step-icon { color: var(--danger); }
+.step .kind { min-width: 150px; }
+.step .what { font-family: var(--mono); font-size: 12px; }
+.step-block { display: flex; flex-direction: column; gap: 6px; }
+.step-children { border-inline-start: 2px solid var(--border); padding-inline-start: 10px; margin-inline-start: 18px; }
+.step-branch { display: flex; flex-direction: column; gap: 6px; }
+.step-branch-head { display: flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-3); }
+.step-branch-head .step-add { height: 20px; padding: 0 6px; font-size: 11px; text-transform: none; letter-spacing: 0; font-weight: 400; color: var(--text-2); border: 1px dashed var(--border-strong); background: none; }
+.step-branch-head .step-add:hover { color: var(--accent); border-color: var(--accent); }
+
+.prop-note { margin: 4px 12px 6px; font-size: 12px; line-height: 1.4; }
+.prop-hint { font-size: 11px; }
+.ask-fields { display: flex; flex-direction: column; gap: 6px; }
+.ask-field { border: 1px solid var(--border); border-radius: 6px; background: var(--surface); padding: 6px; display: flex; flex-direction: column; gap: 4px; }
+.ask-row { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; align-items: center; }
+.ask-row.one { grid-template-columns: 1fr; }
+.ask-field .input { height: 26px; min-width: 0; }
+.ask-req { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: var(--text-2); }
+.ask-tools { display: flex; justify-content: flex-end; gap: 2px; }
+.ask-tools .btn { height: 22px; width: 22px; }
+.arg-row { display: grid; grid-template-columns: 90px 1fr auto; gap: 4px; align-items: start; }
+.arg-row .prop { padding: 0; }
+.arg-row .prop > label { display: none; }
+.arg-row > .input { height: 26px; min-width: 0; }
+/* Step values are one-line expressions: a compact box, still resizable for a long one. */
+.action-designer .props textarea.expr-input { min-height: 30px; height: 30px; resize: vertical; }

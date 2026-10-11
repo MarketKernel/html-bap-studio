@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<!-- viewport-fit=cover hands the notch to env(safe-area-inset-*); resizes-content keeps fields above the keyboard. -->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+<!-- The page's own script is pinned by hash; blob: runs plugin workers (docs/notes/platform.md);
+     https: is where data source plugins may go — the core itself fetches nothing (Task.md 3). -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src '__SCRIPT_HASH__' blob:; worker-src blob:; style-src 'unsafe-inline'; img-src data: blob:; font-src data:; connect-src https: http://localhost:* http://127.0.0.1:*; frame-src blob: data: about:; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+<title>BAP Studio</title>
+<link rel="icon" href="__ICON__">
+<style>/*__STYLES__*/</style>
+</head>
+<body>
+<div id="app"></div>
+<noscript>BAP Studio needs JavaScript.</noscript>
+<script>/*__APP__*/</script>
+</body>
+</html>
