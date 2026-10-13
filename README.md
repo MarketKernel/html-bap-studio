@@ -11,6 +11,11 @@ configuration does.
 - Two modes, switched with **F12**: *Application* (work with data) and *Designer* (change the
   application). Changes apply at once; **Ctrl/⌘+Z** undoes them.
 
+**[Online version](https://marketkernel.github.io/html-bap-studio/)** — the same page as a PWA: it can be
+installed into the system (the install button in Chrome's or Edge's address bar; on Android, ⋮ → Install
+app; on iOS, Share → Add to Home Screen) and then runs in its own window and works offline. The data stays
+in the browser, as with the file — see "[GitHub Pages](#github-pages)".
+
 ## Try it
 
 ```bash
@@ -129,6 +134,15 @@ node tests/app-finance.mjs --shots shots   # the same for Personal finances
 node tests/finance.mjs             # Personal finances against Cashflow's own core (../cashflow, if there)
 node tools/i18n.mjs                # missing / unused strings per dictionary
 ```
+
+### GitHub Pages
+
+`.github/workflows/pages.yml` builds and tests every push to `main` and deploys `build/pages/` to GitHub
+Pages (Settings → Pages → Source: GitHub Actions), at <https://marketkernel.github.io/html-bap-studio/>.
+The databases, settings and installed plugins there belong to that address, apart from those of a copy
+opened from disk. Each deploy changes the cache name in `sw.js`, so the browser fetches the new version by
+itself; the page offers to switch to it, or it comes on the next launch. `build/finance.html` is not
+deployed: the service worker answers every navigation in its scope with the studio.
 
 ## Layout
 
